@@ -1,11 +1,12 @@
 var path = require('path');
 const express = require('express');
 const mockAPIResponse = require('./mockAPI.js');
-
 const app = express();
 
 app.use(express.static('dist'));
 
+const cors = require('cors');
+app.use(cors());
 console.log(__dirname);
 
 app.get('/', function (req, res) {
