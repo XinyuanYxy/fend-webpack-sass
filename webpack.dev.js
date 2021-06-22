@@ -1,26 +1,9 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
-module.exports = {
-	entry: './src/client/index.js',
+const { merge } = require('webpack-merge');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const common = require('./webpack.common.js');
+module.exports = merge(common, {
 	mode: 'development',
-	devtool: 'source-map',
-	stats: 'verbose',
-	module: {
-		rules: [
-			{
-				test: '/.js$/',
-				exclude: /node_modules/,
-				loader: 'babel-loader',
-			},
-			{
-				test: /\.scss$/,
-				use: ['style-loader', 'css-loader', 'sass-loader'],
-			},
-		],
-	},
 	plugins: [
 		new HtmlWebPackPlugin({
 			template: './src/client/views/index.html',
@@ -36,8 +19,4 @@ module.exports = {
 			protectWebpackAssets: false,
 		}),
 	],
-	output: {
-		libraryTarget: 'var',
-		library: 'Client',
-	},
-};
+});
