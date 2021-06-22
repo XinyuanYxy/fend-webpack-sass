@@ -1,0 +1,18 @@
+@mixin formTheme($form-color: rgba(209, 113, 58, 0.5)) {
+	background: $form-color;
+	box-shadow: 0 0 1px $form-color;
+}
+form {
+	border: 1px solid #545454;
+	border-radius: 3px;
+	padding: 40px;
+	@include formTheme;
+}
+
+input {
+	@include formTheme(rgba(243, 160, 6, 0.966));
+	padding: 5px 20px;
+	width: 100%;
+	line-height: 16px;
+	margin: 10px 0;
+}
